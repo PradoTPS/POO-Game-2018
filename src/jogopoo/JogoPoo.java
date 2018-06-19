@@ -8,38 +8,19 @@ public class JogoPoo {
     public final static int LOOP_DURATION = 30;
 
     public static void main(String[] args) {
-        //<Awake>
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createFrame();
-            }
-        });
-        //</Awake>
+        javax.swing.SwingUtilities.invokeLater(() -> createFrame());
 
         loop();
     }
 
-    public static void update(){
-    	
+    private static void createFrame() {
+        MainFrame mainFrame = new MainFrame("Crackpots");
+        Player player = new Player("sprite.png", mainFrame);
+        InputListener listener = new InputListener(player, mainFrame);
     }
 
-    private static void createFrame() {
-        JFrame frame = new JFrame("Crackpots");
-
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setMinimumSize(new Dimension(800,600));
-        frame.setResizable(false);
-        frame.setAlwaysOnTop(true);
-        frame.setVisible(true);
-
-        ImageIcon icon = new ImageIcon("sprite.png");
-        JLabel label = new JLabel(icon);
-        frame.getContentPane().add(label);
-        
-        InputListener listener = new InputListener(label);
-        frame.addKeyListener(listener);
-        
-        //frame.setLayout(null);
+    public static void update(){
+    	
     }
 
     public static void loop(){
