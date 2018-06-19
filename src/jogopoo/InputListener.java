@@ -1,5 +1,5 @@
 package jogopoo;
-import java.awt.Point;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -12,19 +12,18 @@ public class InputListener implements KeyListener{
 		player = p;
         mainFrame.addKeyListener(this);
 	}
-	
-	public void keyReleased(KeyEvent e) {
-		
-	}
+
+    public void keyTyped(KeyEvent e) {}
+	public void keyReleased(KeyEvent e) {}
+
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_LEFT) {
-			player.setLocation(player.getLocation().x - 5, player.getLocation().y);
-		}
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			player.setLocation(player.getLocation().x + 5, player.getLocation().y);
-		}
-	}
-	public void keyTyped(KeyEvent e) {
-		
+	    switch (e.getKeyCode()){
+            case KeyEvent.VK_LEFT:
+                player.setLocation(player.getLocation().x - 5, player.getLocation().y);
+                break;
+            case KeyEvent.VK_RIGHT:
+                player.setLocation(player.getLocation().x + 5, player.getLocation().y);
+                break;
+        }
 	}
 }

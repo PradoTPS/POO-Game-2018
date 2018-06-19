@@ -1,8 +1,5 @@
 package jogopoo;
 
-import java.awt.*;
-import javax.swing.*;
-
 public class JogoPoo {
 
     public final static int LOOP_DURATION = 30;
