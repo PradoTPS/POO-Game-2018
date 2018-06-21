@@ -12,5 +12,6 @@ public class MainFrame extends JFrame {
         this.setResizable(false);
         this.setAlwaysOnTop(true);
         this.setVisible(true);
+        this.setLayout(null);
     }
 }

@@ -6,24 +6,27 @@ import java.awt.event.KeyListener;
 import javax.swing.*;
 
 public class InputListener implements KeyListener{
-	Player player;
+    Player player;
 
-	public InputListener(Player p, JFrame mainFrame){
-		player = p;
+    public InputListener(Player p, JFrame mainFrame){
+        player = p;
         mainFrame.addKeyListener(this);
-	}
+    }
 
+    @Override
     public void keyTyped(KeyEvent e) {}
-	public void keyReleased(KeyEvent e) {}
-
-	public void keyPressed(KeyEvent e) {
-	    switch (e.getKeyCode()){
+    @Override
+    public void keyReleased(KeyEvent e) {}
+    
+    @Override
+    public void keyPressed(KeyEvent e) {
+        switch (e.getKeyCode()){
             case KeyEvent.VK_LEFT:
-                player.setLocation(player.getLocation().x - 5, player.getLocation().y);
+                player.move(-10);
                 break;
             case KeyEvent.VK_RIGHT:
-                player.setLocation(player.getLocation().x + 5, player.getLocation().y);
+                player.move(10);
                 break;
         }
-	}
+    }
 }
