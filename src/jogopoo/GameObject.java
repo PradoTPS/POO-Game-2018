@@ -16,6 +16,19 @@ public class GameObject extends JLabel{
         mainFrame.getContentPane().add(this);
     }
     
+    public boolean collidedVertical(GameObject other){
+        boolean answer = false;
+        
+        if( this.getX() >= other.getX() &&
+            this.getX() < other.getX() + other.getWidth() ||
+            this.getX() + this.getWidth() > other.getX() &&
+            this.getX() + this.getWidth() <= other.getX() + other.getWidth()){
+             answer = true;
+        }
+        
+        return answer;
+    }
+    
     public int clamp(int location, Vector2 boundary){
         return Math.max(boundary.x, Math.min(location, boundary.y));
     }

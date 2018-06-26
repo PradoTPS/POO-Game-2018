@@ -6,23 +6,26 @@ public class JogoPoo{
 
     public static MainFrame mainFrame;
     public static Player player;
-    public static BulletSpawn[] bulletSpawns = new BulletSpawn[4];
+    public static Bullet[] bullet = new Bullet[4];
     public static InputListener listener;
 
-    public static void main(String[] args) {
-        javax.swing.SwingUtilities.invokeLater(() -> createFrame());
-
+    public static void main(String[] args) throws InterruptedException {
+        createFrame();
         loop();
     }
     
     public static void createFrame(){
         mainFrame = new MainFrame("Crackpots");
         player = new Player("src/images/player.png", mainFrame, 370, 50, 50);
-        for(int i = 0; i < bulletSpawns.length; i++) bulletSpawns[i] = new BulletSpawn("src/images/bulletSpawn.png", mainFrame, 100 + (180 * i), 100, 50);
-        listener = new InputListener(player, mainFrame);
+        for(int i = 0; i < bullet.length; i++) bullet[i] = new Bullet("src/images/bulletSpawn.png", mainFrame, 100 + (180 * i), 100, 50);
+        listener = new InputListener(player, bullet, mainFrame);
     }
 
-    public static void update(){}
+    public static void update(){
+        for(int i = 0; i < bullet.length; i++){;;;;;
+            bullet[i].behaviour();
+        }
+    }
 
     public static void loop(){
         long expectedtime = System.currentTimeMillis();
