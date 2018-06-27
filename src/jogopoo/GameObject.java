@@ -29,6 +29,12 @@ public class GameObject extends JLabel{
         return answer;
     }
     
+    public boolean collidedHorizontal(GameObject other) {
+        boolean answer = false;
+        
+        return answer;
+    }
+    
     public int clamp(int location, Vector2 boundary){
         return Math.max(boundary.x, Math.min(location, boundary.y));
     }
