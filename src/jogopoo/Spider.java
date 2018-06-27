@@ -13,15 +13,15 @@ import javax.swing.*;
  */
 public class Spider extends GameObject{
     //private Vector2 position;
-    private final int velocity;
+    private final int deslocamento;
     
-    public Spider (String img, JFrame mainFrame, int x, int y, int size, int vel) {
+    public Spider (String img, JFrame mainFrame, int x, int y, int size, int deltaY) {
         super(img, mainFrame, x, y, size);
-        this.velocity = vel;
+        this.deslocamento = deltaY;
     }    
     
     public void behavior() {
-        this.setLocation(this.getX(), this.getY() + this.velocity);
+        this.setLocation(this.getX(), this.getY() - this.deslocamento);
         System.out.println("nasceu");
     }
 }
