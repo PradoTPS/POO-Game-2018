@@ -30,7 +30,7 @@ public class Bullet implements GameObject, Collider {
 
     @Override
     public void onUpdate(GameManager gameManager) {
-        if(y < 600){
+        if(y < 600 - height){
             y += velocity;
         } else {
             y = initialY;

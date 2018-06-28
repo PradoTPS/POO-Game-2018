@@ -5,8 +5,8 @@ import java.util.Random;
 public class Util {
     private static Random random = new Random();
 
-    public static int clamp(int variable, int max, int min){
-        return Math.max(max, Math.min(variable, min));
+    public static int clamp(int variable, int min, int max){
+        return Math.max(min, Math.min(variable, max));
     }
 
     public static int randomRange(int min, int max){

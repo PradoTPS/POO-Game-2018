@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class EnemyManager{
     private ArrayList<Spider> spiders = new ArrayList<Spider>();
     private int spawnCount = 0;
+    private int spawnDelay = 80;
 
     public void onUpdate(GameManager gameManager){
         if(spawnCount <= 0){
@@ -12,7 +13,9 @@ public class EnemyManager{
             spiders.add(spider);
             gameManager.instantiate(spider,100 + (180 * selectColumn()), 600);
 
-            spawnCount = 80;
+            spawnCount = spawnDelay;
+
+            spawnDelay = Util.clamp(spawnDelay - 2, 30, spawnDelay);
         }
 
         spawnCount--;

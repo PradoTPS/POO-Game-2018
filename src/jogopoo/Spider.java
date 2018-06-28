@@ -20,7 +20,7 @@ public class Spider implements GameObject, Collider {
         this.y = 600;
         this.width = 50;
         this.height = 50;
-        this.velocity = -3;
+        this.velocity = -8;
 
         this.label.setBounds(this.x, this.y, this.width, this.height);
         this.label.setLocation(this.x, this.y);
