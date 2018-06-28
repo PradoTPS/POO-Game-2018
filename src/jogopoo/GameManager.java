@@ -10,6 +10,7 @@ public class GameManager {
     private ArrayList<Pair<GameObject, JLabel>> gameObjects;
     private EnemyManager enemyManager;
     public ArrayList<Bullet> bullets = new ArrayList<Bullet>();
+    public ArrayList<Window> windows = new ArrayList<Window>();
     public Player player;
 
     public GameManager(JLayeredPane p){
@@ -23,7 +24,11 @@ public class GameManager {
         for(int i = 0; i < 4; i++) {
             Bullet b = new Bullet();
             bullets.add(b);
-            instantiate(b, 100 + (180 * i), 100);
+            instantiate(b, Util.BOUND + (Util.GAP * i), 100);
+
+            Window w = new Window();
+            windows.add(w);
+            instantiate(w, Util.BOUND + (Util.GAP * i), 150);
         }
 
         enemyManager = new EnemyManager();

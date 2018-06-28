@@ -11,7 +11,7 @@ public class EnemyManager{
         if(spawnCount <= 0){
             Spider spider = new Spider();
             spiders.add(spider);
-            gameManager.instantiate(spider,100 + (180 * selectColumn()), 600);
+            gameManager.instantiate(spider,Util.BOUND + (Util.GAP * selectColumn()), 600);
 
             spawnCount = spawnDelay;
 
@@ -27,6 +27,16 @@ public class EnemyManager{
         for(Bullet bullet : gameManager.bullets){
             for(int i = 0; i < spiders.size(); i++){
                 if(bullet.isColliding(spiders.get(i).getBoundingBox())){
+                    gameManager.destroy(spiders.get(i));
+                    spiders.remove(spiders.get(i));
+                }
+            }
+        }
+
+        for(Window window : gameManager.windows){
+            for(int i = 0; i < spiders.size(); i++){
+                if(window.isColliding(spiders.get(i).getBoundingBox())){
+                    System.out.println("Got Window!");
                     gameManager.destroy(spiders.get(i));
                     spiders.remove(spiders.get(i));
                 }
