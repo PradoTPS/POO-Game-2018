@@ -11,9 +11,10 @@ public class Spider implements GameObject, Collider {
     private int width;
     private int height;
     private int velocity;
+    public boolean isDestroyed = false;
 
     @Override
-    public JLabel onCreate(Manager manager, int x, int y) {
+    public JLabel onCreate(GameManager gameManager, int x, int y) {
         this.label = new JLabel(new ImageIcon("src/images/spider.png"));
         this.x = x;
         this.y = 600;
@@ -27,7 +28,7 @@ public class Spider implements GameObject, Collider {
     }
 
     @Override
-    public void onUpdate(Manager manager) {
+    public void onUpdate(GameManager gameManager) {
         if(y > 100){
             y += velocity;
         } else {
@@ -38,13 +39,13 @@ public class Spider implements GameObject, Collider {
     }
 
     @Override
-    public void onDestroy(Manager manager){}
+    public void onDestroy(GameManager gameManager){}
 
     @Override
-    public void onKeyPressed(Manager manager, KeyEvent e) { }
+    public void onKeyPressed(GameManager gameManager, KeyEvent e) { }
 
     @Override
-    public void onKeyReleased(Manager manager, KeyEvent e) { }
+    public void onKeyReleased(GameManager gameManager, KeyEvent e) { }
 
     @Override
     public boolean isColliding(Rectangle rectangle) {

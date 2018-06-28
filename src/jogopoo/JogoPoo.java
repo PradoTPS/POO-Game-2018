@@ -1,7 +1,8 @@
 package jogopoo;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -17,18 +18,21 @@ public class JogoPoo{
     }
 
     private static void build(){
-        MainFrame mainFrame = new MainFrame("Jogo POO");
-        final Manager manager = new Manager(mainFrame.mainPanel);
+        final MainFrame mainFrame = new MainFrame("Jogo POO");
+        final GameManager gameManager = new GameManager(mainFrame.mainPanel);
 
         mainFrame.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyTyped(KeyEvent e) {}
+            public void keyPressed(KeyEvent e) { gameManager.onKeyPressed(e); }
             @Override
-            public void keyPressed(KeyEvent e) { manager.onKeyPressed(e); }
-            @Override
-            public void keyReleased(KeyEvent e) { manager.onKeyReleased(e); }
+            public void keyReleased(KeyEvent e) { gameManager.onKeyReleased(e); }
         });
 
-        new Timer( 1000/30, a -> manager.onUpdate()).start();
+        new Timer(1000 / 30, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gameManager.onUpdate();
+            }
+        }).start();
     }
 }

@@ -3,15 +3,16 @@ package jogopoo;
 import javafx.util.Pair;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
-import java.time.Instant;
 import java.util.ArrayList;
 
-public class Manager {
+public class GameManager {
     private JLayeredPane mainPanel;
     private ArrayList<Pair<GameObject, JLabel>> gameObjects;
+    private EnemyManager enemyManager;
+    public ArrayList<Bullet> bullets = new ArrayList<Bullet>();
     public Player player;
 
-    public Manager(JLayeredPane p){
+    public GameManager(JLayeredPane p){
         mainPanel = p;
 
         gameObjects = new ArrayList<>();
@@ -19,17 +20,21 @@ public class Manager {
         player = new Player();
         instantiate(player);
 
-        for(int i = 0; i < 4; i++)
-            instantiate(new Bullet(), 100 + (180 * i), 100);
+        for(int i = 0; i < 4; i++) {
+            Bullet b = new Bullet();
+            bullets.add(b);
+            instantiate(b, 100 + (180 * i), 100);
+        }
 
-        for(int i = 0; i < 4; i++)
-            instantiate(new Spider(), 100 + (180 * i), 600);
+        enemyManager = new EnemyManager();
     }
 
     public void onUpdate(){
         for(Pair<GameObject, JLabel> Object : gameObjects) {
             Object.getKey().onUpdate(this);
         }
+
+        enemyManager.onUpdate(this);
     }
 
     public void onKeyPressed(KeyEvent e){

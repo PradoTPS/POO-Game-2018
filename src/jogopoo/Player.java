@@ -13,11 +13,11 @@ public class Player implements GameObject, Collider {
     private int velocity;
 
     @Override
-    public JLabel onCreate(Manager manager, int x, int y){
-        return this.onCreate(manager);
+    public JLabel onCreate(GameManager gameManager, int x, int y){
+        return this.onCreate(gameManager);
     }
 
-    public JLabel onCreate(Manager manager) {
+    public JLabel onCreate(GameManager gameManager) {
         this.label = new JLabel(new ImageIcon("src/images/player.png"));
         this.width = 50;
         this.height = 50;
@@ -31,17 +31,17 @@ public class Player implements GameObject, Collider {
     }
 
     @Override
-    public void onUpdate(Manager manager) {
+    public void onUpdate(GameManager gameManager) {
         x += velocity;
         x = Util.clamp(x, 100, 640);
         label.setLocation(x, y);
     }
 
     @Override
-    public void onDestroy(Manager manager){}
+    public void onDestroy(GameManager gameManager){}
 
     @Override
-    public void onKeyPressed(Manager manager, KeyEvent e) {
+    public void onKeyPressed(GameManager gameManager, KeyEvent e) {
         switch(e.getKeyCode()){
             case KeyEvent.VK_RIGHT:
                 velocity = 15;
@@ -54,7 +54,7 @@ public class Player implements GameObject, Collider {
     }
 
     @Override
-    public void onKeyReleased(Manager manager, KeyEvent e) {
+    public void onKeyReleased(GameManager gameManager, KeyEvent e) {
         switch(e.getKeyCode()){
             case KeyEvent.VK_RIGHT:
                 velocity = 0;
