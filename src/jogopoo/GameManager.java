@@ -16,6 +16,10 @@ public class GameManager {
     public GameManager(JLayeredPane p){
         mainPanel = p;
 
+        Awake();
+    }
+
+    private void Awake(){
         gameObjects = new ArrayList<>();
 
         player = new Player();
@@ -40,6 +44,10 @@ public class GameManager {
         }
 
         enemyManager.onUpdate(this);
+
+        if(player.life <= 0){
+            restart();
+        }
     }
 
     public void onKeyPressed(KeyEvent e){
@@ -77,5 +85,11 @@ public class GameManager {
                 break;
             }
         }
+    }
+
+    public void restart(){
+        for(int i = 0; i < gameObjects.size(); i++) destroy(gameObjects.get(i).getKey());
+
+        Awake();
     }
 }

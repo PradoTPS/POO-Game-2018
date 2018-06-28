@@ -36,7 +36,7 @@ public class EnemyManager{
         for(Window window : gameManager.windows){
             for(int i = 0; i < spiders.size(); i++){
                 if(window.isColliding(spiders.get(i).getBoundingBox())){
-                    System.out.println("Got Window!");
+                    gameManager.player.life--;
                     gameManager.destroy(spiders.get(i));
                     spiders.remove(spiders.get(i));
                 }

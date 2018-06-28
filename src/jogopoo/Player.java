@@ -11,6 +11,7 @@ public class Player implements GameObject, Collider {
     private int width;
     private int height;
     private int velocity;
+    public int life = 3;
 
     @Override
     public JLabel onCreate(GameManager gameManager, int x, int y){
