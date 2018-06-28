@@ -1,19 +1,81 @@
 package jogopoo;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
 
-public class Player extends GameObject{
+public class Player implements GameObject, Collider {
+    private JLabel label;
+    private int x;
+    private int y;
+    private int width;
+    private int height;
+    private int velocity;
 
-    public Player(String img, JFrame mainFrame, int x, int y, int size) {
-        super(img, mainFrame, x, y, size);
-        
-        this.setBound(100,640);
+    @Override
+    public JLabel onCreate(Manager manager, int x, int y){
+        return this.onCreate(manager);
     }
-    
-    public void move(int distance){
-        this.setLocation(
-                clamp(this.getX() + distance, getBound()), 
-                this.getY()
-        );
+
+    public JLabel onCreate(Manager manager) {
+        this.label = new JLabel(new ImageIcon("src/images/player.png"));
+        this.width = 50;
+        this.height = 50;
+        this.x = (800 / 2) - (this.width / 2);
+        this.y = 50;
+        this.velocity = 0;
+
+        this.label.setBounds(this.x, this.y, this.width, this.height);
+        this.label.setLocation(this.x, this.y);
+        return label;
+    }
+
+    @Override
+    public void onUpdate(Manager manager) {
+        x += velocity;
+        x = Util.clamp(x, 100, 640);
+        label.setLocation(x, y);
+    }
+
+    @Override
+    public void onDestroy(Manager manager){}
+
+    @Override
+    public void onKeyPressed(Manager manager, KeyEvent e) {
+        switch(e.getKeyCode()){
+            case KeyEvent.VK_RIGHT:
+                velocity = 15;
+                break;
+
+            case KeyEvent.VK_LEFT:
+                velocity = -15;
+                break;
+        }
+    }
+
+    @Override
+    public void onKeyReleased(Manager manager, KeyEvent e) {
+        switch(e.getKeyCode()){
+            case KeyEvent.VK_RIGHT:
+                velocity = 0;
+                break;
+
+            case KeyEvent.VK_LEFT:
+                velocity = 0;
+                break;
+        }
+    }
+
+    @Override
+    public boolean isColliding(Rectangle rectangle) {
+        return x < rectangle.x + rectangle.width &&
+                x + width > rectangle.x &&
+                y < rectangle.y + rectangle.height &&
+                height + y > rectangle.y;
+    }
+
+    @Override
+    public Rectangle getBoundingBox() {
+        return new Rectangle(x, y, width, height);
     }
 }
