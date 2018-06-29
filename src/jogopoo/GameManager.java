@@ -100,7 +100,6 @@ public class GameManager {
         for(Pair<GameObject, JLabel> Object : gameObjects)
         {
             if(Object.getKey().equals(gameObject)){
-                Object.getKey().onDestroy(this);
                 Object.getValue().setVisible(false);
                 mainPanel.remove(mainPanel.getIndexOf(Object.getValue()));
                 gameObjects.remove(Object);

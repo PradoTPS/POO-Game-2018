@@ -8,6 +8,5 @@ public interface GameObject {
     void onUpdate(GameManager gameManager);
     void onKeyPressed(GameManager gameManager, KeyEvent e);
     void onKeyReleased(GameManager gameManager, KeyEvent e);
-    void onDestroy(GameManager gameManager);
 }
 

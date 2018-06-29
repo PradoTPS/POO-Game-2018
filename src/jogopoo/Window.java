@@ -28,9 +28,6 @@ public class Window implements GameObject, Collider {
     public void onUpdate(GameManager gameManager) {}
 
     @Override
-    public void onDestroy(GameManager gameManager){}
-
-    @Override
     public void onKeyPressed(GameManager gameManager, KeyEvent e) {}
 
     @Override

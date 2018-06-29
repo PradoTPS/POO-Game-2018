@@ -39,9 +39,6 @@ public class Player implements GameObject, Collider {
     }
 
     @Override
-    public void onDestroy(GameManager gameManager){}
-
-    @Override
     public void onKeyPressed(GameManager gameManager, KeyEvent e) {
         switch(e.getKeyCode()){
             case KeyEvent.VK_RIGHT:
