@@ -19,11 +19,11 @@ public class Player implements GameObject, Collider {
     }
 
     public JLabel onCreate(GameManager gameManager) {
-        this.label = new JLabel(new ImageIcon("src/images/player.png"));
+        this.label = new JLabel(new ImageIcon("src/images/playerR.png"));
         this.width = 50;
         this.height = 50;
         this.x = (800 / 2) - (this.width / 2);
-        this.y = 50;
+        this.y = 55;
         this.velocity = 0;
 
         this.label.setBounds(this.x, this.y, this.width, this.height);
@@ -43,6 +43,7 @@ public class Player implements GameObject, Collider {
         switch(e.getKeyCode()){
             case KeyEvent.VK_RIGHT:
                 velocity = 15;
+
                 break;
 
             case KeyEvent.VK_LEFT:

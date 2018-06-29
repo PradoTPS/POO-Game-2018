@@ -3,8 +3,8 @@ package jogopoo;
 import java.util.Random;
 
 public class Util {
-    public static final int BOUND = 100;
-    public static final int GAP = 180;
+    public static final int BOUND = 115;
+    public static final int GAP = 125;
     private static Random random = new Random();
 
     public static int clamp(int variable, int min, int max){

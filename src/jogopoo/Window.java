@@ -16,8 +16,8 @@ public class Window implements GameObject, Collider {
         this.label = new JLabel(new ImageIcon("src/images/window.png"));
         this.x = x;
         this.y = y;
-        this.width = 50;
-        this.height = 20;
+        this.width = 67;
+        this.height = 55;
 
         this.label.setBounds(this.x, this.y, this.width, this.height);
         this.label.setLocation(this.x, this.y);

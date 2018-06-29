@@ -44,7 +44,7 @@ public class EnemyManager{
     }
 
     private int selectColumn(){
-        return Util.randomRange(0,3);
+        return Util.randomRange(0,4);
     }
 
     private void destroySpider(GameManager gameManager, Spider spider){

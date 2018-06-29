@@ -11,16 +11,15 @@ public class Spider implements GameObject, Collider {
     private int width;
     private int height;
     private int velocity;
-    public boolean isDestroyed = false;
 
     @Override
     public JLabel onCreate(GameManager gameManager, int x, int y) {
-        this.label = new JLabel(new ImageIcon("src/images/spider.png"));
+        this.label = new JLabel(new ImageIcon("src/images/spider" + String.valueOf(Util.randomRange(1,3)) + ".png"));
         this.x = x;
         this.y = 600;
-        this.width = 50;
-        this.height = 50;
-        this.velocity = -8;
+        this.width = 67;
+        this.height = 55;
+        this.velocity = -6;
 
         this.label.setBounds(this.x, this.y, this.width, this.height);
         this.label.setLocation(this.x, this.y);

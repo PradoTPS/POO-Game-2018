@@ -19,8 +19,8 @@ public class Bullet implements GameObject, Collider {
         this.x = x;
         this.y = y;
         this.initialY = y;
-        this.width = 50;
-        this.height = 50;
+        this.width = 67;
+        this.height = 67;
         this.velocity = 0;
 
         this.label.setBounds(this.x, this.y, this.width, this.height);
