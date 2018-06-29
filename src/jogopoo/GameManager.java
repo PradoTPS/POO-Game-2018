@@ -2,6 +2,7 @@ package jogopoo;
 
 import javafx.util.Pair;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
@@ -9,6 +10,11 @@ public class GameManager {
     private JLayeredPane mainPanel;
     private ArrayList<Pair<GameObject, JLabel>> gameObjects;
     private EnemyManager enemyManager;
+
+    public int score;
+    private JLabel scoreText;
+    private JLabel lifeText;
+
     public ArrayList<Bullet> bullets = new ArrayList<Bullet>();
     public ArrayList<Window> windows = new ArrayList<Window>();
     public Player player;
@@ -22,8 +28,24 @@ public class GameManager {
     private void Awake(){
         gameObjects = new ArrayList<>();
 
+        enemyManager = new EnemyManager();
         player = new Player();
         instantiate(player);
+
+        lifeText = new JLabel("Vidas: " + String.valueOf(player.life));
+        lifeText.setForeground(Color.BLACK);
+        lifeText.setBounds(0,0, 100, 40);
+        lifeText.setLocation(50, 10);
+        lifeText.setFont(new Font(lifeText.getFont().getFontName(), Font.PLAIN, 20));
+        mainPanel.add(lifeText, 1000);
+
+        score = 0;
+        scoreText = new JLabel("Pontuação: " + String.valueOf(score));
+        scoreText.setForeground(Color.BLACK);
+        scoreText.setBounds(0,0, 250, 40);
+        scoreText.setLocation(180, 10);
+        scoreText.setFont(new Font(scoreText.getFont().getFontName(), Font.PLAIN, 20));
+        mainPanel.add(scoreText, 1000);
 
         for(int i = 0; i < 4; i++) {
             Bullet b = new Bullet();
@@ -34,8 +56,6 @@ public class GameManager {
             windows.add(w);
             instantiate(w, Util.BOUND + (Util.GAP * i), 150);
         }
-
-        enemyManager = new EnemyManager();
     }
 
     public void onUpdate(){
@@ -44,6 +64,8 @@ public class GameManager {
         }
 
         enemyManager.onUpdate(this);
+        lifeText.setText("Vidas: " + String.valueOf(player.life));
+        scoreText.setText("Pontuação: " + String.valueOf(score));
 
         if(player.life <= 0){
             restart();
@@ -87,9 +109,10 @@ public class GameManager {
         }
     }
 
-    public void restart(){
+    private void restart(){
         for(int i = 0; i < gameObjects.size(); i++) destroy(gameObjects.get(i).getKey());
-
+        mainPanel.remove(scoreText);
+        mainPanel.remove(lifeText);
         Awake();
     }
 }

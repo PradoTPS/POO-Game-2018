@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class EnemyManager{
     private ArrayList<Spider> spiders = new ArrayList<Spider>();
-    private int spawnCount = 0;
+    private int spawnCount = 150;
     private int spawnDelay = 80;
 
     public void onUpdate(GameManager gameManager){
@@ -27,8 +27,8 @@ public class EnemyManager{
         for(Bullet bullet : gameManager.bullets){
             for(int i = 0; i < spiders.size(); i++){
                 if(bullet.isColliding(spiders.get(i).getBoundingBox())){
-                    gameManager.destroy(spiders.get(i));
-                    spiders.remove(spiders.get(i));
+                    gameManager.score += 4000/spawnDelay;
+                    destroySpider(gameManager, spiders.get(i));
                 }
             }
         }
@@ -37,8 +37,7 @@ public class EnemyManager{
             for(int i = 0; i < spiders.size(); i++){
                 if(window.isColliding(spiders.get(i).getBoundingBox())){
                     gameManager.player.life--;
-                    gameManager.destroy(spiders.get(i));
-                    spiders.remove(spiders.get(i));
+                    destroySpider(gameManager, spiders.get(i));
                 }
             }
         }
@@ -46,5 +45,10 @@ public class EnemyManager{
 
     private int selectColumn(){
         return Util.randomRange(0,3);
+    }
+
+    private void destroySpider(GameManager gameManager, Spider spider){
+        gameManager.destroy(spider);
+        spiders.remove(spider);
     }
 }
